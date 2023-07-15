@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Text Editor</title>
+</head>
+
+<body>
+    <textarea id="editor" rows="10" cols="50"></textarea>
+
+    <button onclick="formatText('bold')">Bold</button>
+    <button onclick="formatText('italic')">Italic</button>
+    <button onclick="formatText('underline')">Underline</button>
+    <button onclick="formatText('strikethrough')">Strikethrough</button>
+
+    <script>
+        function formatText(style) {
+            var textarea = document.getElementById("editor");
+            var selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+            var formattedText = "";
+
+            switch (style) {
+                case 'bold':
+                    formattedText = "<b>" + selectedText + "</b>";
+                    break;
+                case 'italic':
+                    formattedText = "<i>" + selectedText + "</i>";
+                    break;
+                case 'underline':
+                    formattedText = "<u>" + selectedText + "</u>";
+                    break;
+                case 'strikethrough':
+                    formattedText = "<strike>" + selectedText + "</strike>";
+                    break;
+            }
+
+            var textBeforeSelection = textarea.value.substring(0, textarea.selectionStart);
+            var textAfterSelection = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+
+            textarea.value = textBeforeSelection + formattedText + textAfterSelection;
+        }
+    </script>
+</body>
+
+</html>
